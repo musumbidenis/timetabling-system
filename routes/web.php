@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,15 @@ Route::get('/dashboard', function () {
 Route::get('/users/new_user', function () {
     return view('pages.users.new');
 });
-Route::get('users/tutors', 'TutorsController@tutorsPage');
-Route::get('users/students', 'StudentsController@studentsPage');
-Route::get('academics/courses', 'AcademicsController@coursesPage');
-Route::get('academics/units', 'AcademicsController@unitsPage');
+
+Route::resource('users', UsersController::class);
+
+
+
+
+
+
+// Route::get('users/tutors', 'TutorsController@tutorsPage');
+// Route::get('users/students', 'StudentsController@studentsPage');
+// Route::get('academics/courses', 'AcademicsController@coursesPage');
+// Route::get('academics/units', 'AcademicsController@unitsPage');

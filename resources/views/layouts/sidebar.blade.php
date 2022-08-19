@@ -51,23 +51,23 @@
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">PAGES</h6>
             </li>
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#users" class="nav-link text-white {{ Request::path() == 'users/new_user' || Request::path() == 'users/all_users' ? 'active' : '' }}"
+                <a data-bs-toggle="collapse" href="#users" class="nav-link text-white {{ Request::path() == 'users/create' || Request::path() == 'users' ? 'active' : '' }}"
                     aria-controls="page" role="button" aria-expanded="false">
                     <i class="material-icons-round opacity-10">image</i>
                     <span class="nav-link-text ms-2  ps-1"> Users <b class="caret"></b></span>
                 </a>
-                <div class="collapse {{ Request::path() == 'users/new_user' || Request::path() == 'users/all_users' ? 'show' : '' }}" id="users">
+                <div class="collapse {{ Request::path() == 'users/create' || Request::path() == 'users' ? 'show' : '' }}" id="users">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ Request::path() == 'users/all_users' ? 'active bg-gradient-primary' : '' }}"
-                                href="/users/all_users">
+                            <a class="nav-link text-white {{ Request::path() == 'users' ? 'active bg-gradient-primary' : '' }}"
+                                href="/users">
                                 <span class="sidenav-mini-icon"> R </span>
                                 <span class="sidenav-normal  ms-2  ps-1"> Reports </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ Request::path() == 'users/new_user' ? 'active bg-gradient-primary' : '' }}"
-                                href="/users/new_user">
+                            <a class="nav-link text-white {{ Request::path() == 'users/create' ? 'active bg-gradient-primary' : '' }}"
+                                href="/users/create">
                                 <span class="sidenav-mini-icon"> N </span>
                                 <span class="sidenav-normal  ms-2  ps-1"> New User </span>
                             </a>

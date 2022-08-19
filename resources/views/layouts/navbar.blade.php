@@ -30,11 +30,11 @@
                 </li>
 
                 {{-- Check the routes and display the appropriate breadcrumb --}}
-                @if (Request::path() == 'users/new_user')
+                @if (Request::path() == 'users/create')
                     <li class="breadcrumb-item text-sm text-dark active" aria-current="page">New User</li>
                     </ol>
                     <h6 class="font-weight-bolder mb-0">New User</h6>
-                @elseif(Request::path() == 'users/all_users')
+                @elseif(Request::path() == 'users')
                     <li class="breadcrumb-item text-sm text-dark active" aria-current="page">All Users</li>
                     </ol>
                     <h6 class="font-weight-bolder mb-0">All Users</h6>
