@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -36,25 +37,48 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->first_name = $request->first_name;
-        $user->surname = $request->surname;
-        $user->email_address = $request->email_address;
-        $user->role = $request->role;
+        $validate = Validator::make(
+            $request->all(),
+            [
+                'first_name' => 'required',
+                'surname' => 'required',
+                'email_address' => 'required',
+                'role' => 'required',
+            ],
+            [
+                'name.required' => 'Name is must.',
+                'name.min' => 'Name must have 5 char.',
+            ],
+        );
 
-        try{
-            
-            $user->save();
-            Alert::success('Success', 'New user created successfully');
+        if ($validate->fails()) {
+            $errors = $validate->errors();
+            foreach($errors->getMessages() as $messages) {
+                // Go through each message for this field.
+                foreach($messages AS $message) {
+                    Alert::error('Oops', $messages)->persistent(true, false);
+                }
+                
+            }
+            //dd($validate->errors());
+        } else {
+            $user = new User();
+            $user->first_name = $request->first_name;
+            $user->surname = $request->surname;
+            $user->email_address = $request->email_address;
+            $user->role = $request->role;
 
-        } catch(\Illuminate\Database\QueryException $e){
+            try {
+                $user->save();
+                Alert::success('Success', 'New user created successfully');
+            } catch (\Illuminate\Database\QueryException $e) {
+                $errorCode = $e->errorInfo[1];
 
-            $errorCode = $e->errorInfo[1];
-
-            if($errorCode == '1062'){
-                Alert::error('Oops', 'Duplicate Entry for')->persistent(true,false);
-            }else{
-                Alert::error('Oops', $e->errorInfo[2])->persistent(true,false);
+                if ($errorCode == '1062') {
+                    Alert::error('Oops', 'Duplicate Entry for')->persistent(true, false);
+                } else {
+                    Alert::error('Oops', $e->errorInfo[2])->persistent(true, false);
+                }
             }
         }
 
