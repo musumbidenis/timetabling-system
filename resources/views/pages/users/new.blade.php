@@ -12,7 +12,7 @@
                         <h6 class="mb-0">New User</h6>
                     </div>
                     <div class="card-body pt-2">
-                        <form action="/users" method="post">
+                        <form id="new_user_form" action="/users" method="post">
                             {{ csrf_field() }}
 
                             <div class="input-group input-group-dynamic my-4">
@@ -49,4 +49,35 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#new_user_form').validate({
+                rules: {
+                    first_name: {
+                        required: true
+                    },
+                    surname: {
+                        required: true,
+                    },
+                    email_address: {
+                        required: true,
+                        email: true
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.input-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+    </script>
 @endsection
