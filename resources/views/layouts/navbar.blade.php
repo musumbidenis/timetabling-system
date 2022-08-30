@@ -32,17 +32,17 @@
                 {{-- Check the routes and display the appropriate breadcrumb --}}
                 @if (Request::path() == 'users/create')
                     <li class="breadcrumb-item text-sm text-dark active" aria-current="page">New User</li>
-                    </ol>
-                    <h6 class="font-weight-bolder mb-0">New User</h6>
-                @elseif(Request::path() == 'users')
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">All Users</li>
-                    </ol>
-                    <h6 class="font-weight-bolder mb-0">All Users</h6>
-                @else
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
-                    </ol>
-                    <h6 class="font-weight-bolder mb-0">Dashboard</h6>
-                @endif
+            </ol>
+            <h6 class="font-weight-bolder mb-0">New User</h6>
+        @elseif(Request::path() == 'users')
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">All Users</li>
+            </ol>
+            <h6 class="font-weight-bolder mb-0">All Users</h6>
+        @else
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+            </ol>
+            <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+            @endif
 
         </nav>
         <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UsersController extends Controller
 {
@@ -37,52 +37,39 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        //Validate the form input fields
         $validate = Validator::make(
             $request->all(),
             [
                 'first_name' => 'required',
                 'surname' => 'required',
-                'email_address' => 'required',
-                'role' => 'required',
-            ],
-            [
-                'name.required' => 'Name is must.',
-                'name.min' => 'Name must have 5 char.',
+                'email_address' => 'required|email|unique:users',
+                'role' => 'required|in:admin,HOD,deputy_HOD',
             ],
         );
 
+        //Alert the user of the input error
         if ($validate->fails()) {
             $errors = $validate->errors();
-            foreach($errors->getMessages() as $messages) {
-                // Go through each message for this field.
-                foreach($messages AS $message) {
-                    Alert::error('Oops', $messages)->persistent(true, false);
-                }
-                
+
+            foreach ($errors->all() as $error) {
+                Alert::error('Oops', $error)->persistent(true, false);
             }
-            //dd($validate->errors());
         } else {
+
+            //Save the input data to database
             $user = new User();
             $user->first_name = $request->first_name;
             $user->surname = $request->surname;
             $user->email_address = $request->email_address;
             $user->role = $request->role;
 
-            try {
-                $user->save();
-                Alert::success('Success', 'New user created successfully');
-            } catch (\Illuminate\Database\QueryException $e) {
-                $errorCode = $e->errorInfo[1];
+            $user->save();
+            Alert::success('Success', 'New user created successfully');
 
-                if ($errorCode == '1062') {
-                    Alert::error('Oops', 'Duplicate Entry for')->persistent(true, false);
-                } else {
-                    Alert::error('Oops', $e->errorInfo[2])->persistent(true, false);
-                }
-            }
         }
 
-        return back();
+        return back()->withInput($request->except('password'));
     }
 
     /**
