@@ -35,17 +35,10 @@
         @include('layouts.footer')
     </main>
 
-    @include('sweetalert::alert')
-    <!-- Control Center for Material Dashboard: parallax effects, scripts  -->
-    <script src="../assets/js/material-dashboard.min.js?v=3.0.5"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!--   Core JS Files   -->
+    <!--   JS Files   -->
     <script src="../assets/js/core/popper.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="../assets/js/core/bootstrap.min.js"></script>
-    <!--   JS Plugins Files   -->
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../assets/js/plugins/jquery-validate.min.js"></script>
     <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
@@ -54,7 +47,11 @@
     <script src="../assets/js/plugins/quill.min.js"></script>
     <script src="../assets/js/plugins/flatpickr.min.js"></script>
     <script src="../assets/js/plugins/dropzone.min.js"></script>
+    <script src="../assets/js/material-dashboard.min.js?v=3.0.5"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     @yield('scripts')
+
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -87,6 +84,7 @@
 
         });
     </script>
+    @include('sweetalert::alert') 
 
 </body>
 

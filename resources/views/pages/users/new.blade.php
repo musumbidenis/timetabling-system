@@ -15,22 +15,22 @@
                         <form id="new_user_form" action="/users" method="post">
                             {{ csrf_field() }}
 
-                            <div class="input-group input-group-dynamic my-4">
-                                <label for="first_name" class="form-label">First Name</label>
+                            <div class="input-group input-group-static my-4">
+                                <label for="first_name">First Name</label>
                                 <input type="text" class="form-control" name="first_name" id="first_name"
                                     value="{{ old('first_name') }}">
                             </div>
-                            <div class="input-group input-group-dynamic my-4">
-                                <label for="surname" class="form-label">Surname</label>
+                            <div class="input-group input-group-static my-4">
+                                <label for="surname">Surname</label>
                                 <input type="text" class="form-control" name="surname" id="surname"
                                     value="{{ old('surname') }}">
                             </div>
-                            <div class="input-group input-group-dynamic my-4">
-                                <label for="email" class="form-label">Email Address</label>
+                            <div class="input-group input-group-static my-4">
+                                <label for="email">Email Address</label>
                                 <input type="email" class="form-control" name="email_address" id="email"
                                     value="{{ old('email_address') }}">
                             </div>
-                            <div class="input-group my-4">
+                            <div class="select my-4">
                                 <select class="selectpicker col-lg-12 col-md-12" name="role" id="role">
                                     <option disabled selected value="">Select Role</option>
                                     <option value="admin">Administrator</option>
@@ -70,11 +70,20 @@
                         required: true,
                     },
                 },
+                messages:{
+                    first_name:'Please fill out this field.',
+                    surname:'Please fill out this field.',
+                    email_address:{
+                        required:'Please enter an email address.',
+                        email:'Please enter a valid email address.',
+                    },
+                    role:'Please select a role in the list.',
+                },
                 errorElement: 'span',
                 errorPlacement: function(error, element) {
                     error.addClass('invalid-feedback');
                     element.closest('.input-group').append(error);
-                    element.closest('.input-group').append(error);
+                    element.closest('.select').append(error);
                 },
                 highlight: function(element, errorClass, validClass) {
                     $(element).addClass('is-invalid');
