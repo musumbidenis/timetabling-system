@@ -55,6 +55,8 @@ class UsersController extends Controller
             foreach ($errors->all() as $error) {
                 Alert::error('Oops', $error)->persistent(true, false);
             }
+
+            return back()->withInput($request->except('password'));
         } else {
 
             //Save the input data to database
@@ -67,9 +69,8 @@ class UsersController extends Controller
             $user->save();
             Alert::success('Success', 'New user created successfully');
 
+            return back();
         }
-
-        return back()->withInput($request->except('password'));
     }
 
     /**
