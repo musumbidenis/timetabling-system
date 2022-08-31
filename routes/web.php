@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\DepartmentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::get('/users/new_user', function () {
 });
 
 Route::resource('users', UsersController::class);
+Route::resource('departments', DepartmentsController::class);
 
 
 
