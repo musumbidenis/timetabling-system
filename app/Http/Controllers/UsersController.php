@@ -38,7 +38,7 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //Validate the form input fields
-        $validate = Validator::make(
+        $validator = Validator::make(
             $request->all(),
             [
                 'first_name' => 'required',
@@ -49,14 +49,8 @@ class UsersController extends Controller
         );
 
         //Alert the user of the input error
-        if ($validate->fails()) {
-            $errors = $validate->errors();
-
-            foreach ($errors->all() as $error) {
-                Alert::error('Oops', $error)->persistent(true, false);
-            }
-
-            return back()->withInput($request->except('password'));
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput($request->except('password'));
         } else {
 
             //Save the input data to database
@@ -67,9 +61,8 @@ class UsersController extends Controller
             $user->role = $request->role;
 
             $user->save();
-            Alert::success('Success', 'New user created successfully');
 
-            return back();
+            return back()->withSuccess('New User Created Successfully!');
         }
     }
 

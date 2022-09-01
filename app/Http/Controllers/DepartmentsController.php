@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class DepartmentsController extends Controller
 {
@@ -38,7 +37,7 @@ class DepartmentsController extends Controller
     public function store(Request $request)
     {
         //Validate the form input fields
-        $validate = Validator::make(
+        $validator = Validator::make(
             $request->all(),
             [
                 'dept_name' => 'required',
@@ -46,14 +45,8 @@ class DepartmentsController extends Controller
         );
 
         //Alert the user of the input error
-        if ($validate->fails()) {
-            $errors = $validate->errors();
-
-            foreach ($errors->all() as $error) {
-                Alert::error('Oops', $error)->persistent(true, false);
-            }
-
-            return back()->withInput();
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
         } else {
 
             //Save the input data to database
@@ -61,9 +54,8 @@ class DepartmentsController extends Controller
             $department->dept_name = $request->dept_name;
 
             $department->save();
-            Alert::success('Success', 'New department created successfully');
 
-            return back();
+            return back()->withSuccess('New Department Created Successfully!');
 
         }
     }
