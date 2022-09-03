@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\VenuesController;
 use App\Http\Controllers\SubjectsController;
+use App\Http\Controllers\ClassesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::resource('users', UsersController::class);
 Route::resource('departments', DepartmentsController::class);
 Route::resource('venues', VenuesController::class);
 Route::resource('subjects', SubjectsController::class);
+Route::resource('classes', ClassesController::class);
 
 
 

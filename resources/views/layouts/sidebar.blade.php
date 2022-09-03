@@ -151,6 +151,31 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#classes" class="nav-link text-white {{ Request::path() == 'classes/create' || Request::path() == 'classes' ? 'active' : '' }}"
+                    aria-controls="page" role="button" aria-expanded="false">
+                    <i class="material-icons-round opacity-10">image</i>
+                    <span class="nav-link-text ms-2  ps-1"> Classes <b class="caret"></b></span>
+                </a>
+                <div class="collapse {{ Request::path() == 'classes/create' || Request::path() == 'classes' ? 'show' : '' }}" id="classes">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white {{ Request::path() == 'classes' ? 'active bg-gradient-primary' : '' }}"
+                                href="/classes">
+                                <span class="sidenav-mini-icon"> R </span>
+                                <span class="sidenav-normal  ms-2  ps-1"> Reports </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white {{ Request::path() == 'classes/create' ? 'active bg-gradient-primary' : '' }}"
+                                href="/classes/create">
+                                <span class="sidenav-mini-icon"> N </span>
+                                <span class="sidenav-normal  ms-2  ps-1"> New Class </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
                 <hr class="horizontal light" />
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">SETTINGS</h6>
             </li>
