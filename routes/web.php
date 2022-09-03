@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\VenuesController;
+use App\Http\Controllers\SubjectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::get('/users/new_user', function () {
 Route::resource('users', UsersController::class);
 Route::resource('departments', DepartmentsController::class);
 Route::resource('venues', VenuesController::class);
+Route::resource('subjects', SubjectsController::class);
 
 
 
