@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Venue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class UsersController extends Controller
+class VenuesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('pages.users.all');
+        return view('pages.venues.all');
     }
 
     /**
@@ -25,7 +25,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('pages.users.new');
+        return view('pages.venues.new');
     }
 
     /**
@@ -40,28 +40,26 @@ class UsersController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'first_name' => 'required',
-                'surname' => 'required',
-                'email_address' => 'required|email|unique:users',
-                'role' => 'required|in:admin,HOD,deputy_HOD',
+                'venue_name' => 'required',
+                'venue_type' => 'required|in:lab,hall',
+                'capacity' => 'required|numeric',
             ],
         );
 
         //Alert the user of the input error
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput($request->except('password'));
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
         } else {
 
             //Save the input data to database
-            $user = new User();
-            $user->first_name = $request->first_name;
-            $user->surname = $request->surname;
-            $user->email_address = $request->email_address;
-            $user->role = $request->role;
+            $venue = new Venue();
+            $venue->venue_name = $request->venue_name;
+            $venue->venue_type = $request->venue_type;
+            $venue->capacity = $request->capacity;
 
-            $user->save();
+            $venue->save();
 
-            return back()->withSuccess('New User Created Successfully!');
+            return back()->withSuccess('New Venue Created Successfully!');
         }
     }
 
