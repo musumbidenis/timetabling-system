@@ -42,11 +42,7 @@
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../assets/js/plugins/jquery-validate.min.js"></script>
     <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="../assets/js/plugins/chartjs.min.js"></script>
-    <script src="../assets/js/plugins/choices.min.js"></script>
-    <script src="../assets/js/plugins/quill.min.js"></script>
     <script src="../assets/js/plugins/flatpickr.min.js"></script>
-    <script src="../assets/js/plugins/dropzone.min.js"></script>
     <script src="../assets/js/material-dashboard.min.js?v=3.0.5"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
@@ -61,28 +57,12 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
 
-        //WYSIWYG editor by Quill js iniialization
-        if (document.getElementById('editor')) {
-            var quill = new Quill('#editor', {
-                theme: 'snow' // Specify theme in configuration
-            });
-        }
-
         //Datetime picker by flatpickr js initialization
         if (document.querySelector('.datetimepicker')) {
             flatpickr('.datetimepicker', {
                 allowInput: true
             }); // flatpickr
         }
-
-        //Drag'n'drop file uploads by Dropzone js initialization
-        Dropzone.autoDiscover = false;
-        var drop = document.getElementById('dropzone')
-        var myDropzone = new Dropzone(drop, {
-            url: "/file/post",
-            addRemoveLinks: true
-
-        });
     </script>
     @include('sweetalert::alert') 
 

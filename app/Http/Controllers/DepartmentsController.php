@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Yajra\DataTables\DataTables;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,8 +15,13 @@ class DepartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $departments = DB::select('select * from departments');
+
+            return Datatables::of($departments)->make(true);
+        }
         return view('pages.departments.all');
     }
 
@@ -37,18 +44,16 @@ class DepartmentsController extends Controller
     public function store(Request $request)
     {
         //Validate the form input fields
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'dept_name' => 'required',
-            ],
-        );
+        $validator = Validator::make($request->all(), [
+            'dept_name' => 'required',
+        ]);
 
         //Alert the user of the input error
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+            return back()
+                ->with('toast_error', $validator->messages()->all()[0])
+                ->withInput();
         } else {
-
             //Save the input data to database
             $department = new Department();
             $department->dept_name = $request->dept_name;
@@ -56,7 +61,6 @@ class DepartmentsController extends Controller
             $department->save();
 
             return back()->withSuccess('New Department Created Successfully!');
-
         }
     }
 
