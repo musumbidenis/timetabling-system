@@ -7,7 +7,7 @@
                     <div class="card-header p-3 pt-2">
                         <div
                             class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
-                            <i class="material-icons opacity-10">person_add</i>
+                            <i class="material-icons opacity-10">library_add</i>
                         </div>
                         <h6 class="mb-0">New Subject</h6>
                     </div>

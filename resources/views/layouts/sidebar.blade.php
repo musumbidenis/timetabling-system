@@ -53,7 +53,7 @@
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#users" class="nav-link text-white {{ Request::path() == 'users/create' || Request::path() == 'users' ? 'active' : '' }}"
                     aria-controls="page" role="button" aria-expanded="false">
-                    <i class="material-icons-round opacity-10">image</i>
+                    <i class="material-icons-round opacity-10">group</i>
                     <span class="nav-link-text ms-2  ps-1"> Users <b class="caret"></b></span>
                 </a>
                 <div class="collapse {{ Request::path() == 'users/create' || Request::path() == 'users' ? 'show' : '' }}" id="users">
@@ -78,7 +78,7 @@
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#departments" class="nav-link text-white {{ Request::path() == 'departments/create' || Request::path() == 'departments' ? 'active' : '' }}"
                     aria-controls="page" role="button" aria-expanded="false">
-                    <i class="material-icons-round opacity-10">image</i>
+                    <i class="material-icons-round opacity-10">groups_2</i>
                     <span class="nav-link-text ms-2  ps-1"> Departments <b class="caret"></b></span>
                 </a>
                 <div class="collapse {{ Request::path() == 'departments/create' || Request::path() == 'departments' ? 'show' : '' }}" id="departments">
@@ -103,7 +103,7 @@
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#venues" class="nav-link text-white {{ Request::path() == 'venues/create' || Request::path() == 'venues' ? 'active' : '' }}"
                     aria-controls="page" role="button" aria-expanded="false">
-                    <i class="material-icons-round opacity-10">image</i>
+                    <i class="material-icons-round opacity-10">local_library</i>
                     <span class="nav-link-text ms-2  ps-1"> Venues <b class="caret"></b></span>
                 </a>
                 <div class="collapse {{ Request::path() == 'venues/create' || Request::path() == 'venues' ? 'show' : '' }}" id="venues">
@@ -128,7 +128,7 @@
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#subjects" class="nav-link text-white {{ Request::path() == 'subjects/create' || Request::path() == 'subjects' ? 'active' : '' }}"
                     aria-controls="page" role="button" aria-expanded="false">
-                    <i class="material-icons-round opacity-10">image</i>
+                    <i class="material-icons-round opacity-10">library_books</i>
                     <span class="nav-link-text ms-2  ps-1"> Subjects <b class="caret"></b></span>
                 </a>
                 <div class="collapse {{ Request::path() == 'subjects/create' || Request::path() == 'subjects' ? 'show' : '' }}" id="subjects">
@@ -153,7 +153,7 @@
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#classes" class="nav-link text-white {{ Request::path() == 'classes/create' || Request::path() == 'classes' ? 'active' : '' }}"
                     aria-controls="page" role="button" aria-expanded="false">
-                    <i class="material-icons-round opacity-10">image</i>
+                    <i class="material-icons-round opacity-10">school</i>
                     <span class="nav-link-text ms-2  ps-1"> Classes <b class="caret"></b></span>
                 </a>
                 <div class="collapse {{ Request::path() == 'classes/create' || Request::path() == 'classes' ? 'show' : '' }}" id="classes">
