@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class SubjectsController extends Controller
@@ -13,8 +15,13 @@ class SubjectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $subjects = DB::select('select * from subjects');
+
+            return Datatables::of($subjects)->make(true);
+        }
         return view('pages.subjects.all');
     }
 

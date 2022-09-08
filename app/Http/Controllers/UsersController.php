@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -13,8 +15,13 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $users = DB::select('select * from users');
+
+            return Datatables::of($users)->make(true);
+        }
         return view('pages.users.all');
     }
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Venue;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class VenuesController extends Controller
@@ -13,8 +15,13 @@ class VenuesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $venues = DB::select('select * from venues');
+
+            return Datatables::of($venues)->make(true);
+        }
         return view('pages.venues.all');
     }
 

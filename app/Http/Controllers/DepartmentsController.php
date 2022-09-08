@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use DB;
-use Yajra\DataTables\DataTables;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class DepartmentsController extends Controller

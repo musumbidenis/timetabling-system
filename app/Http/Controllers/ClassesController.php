@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\Classs;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class ClassesController extends Controller
@@ -14,8 +15,13 @@ class ClassesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $classses = DB::select('select * from classses');
+
+            return Datatables::of($classses)->make(true);
+        }
         return view('pages.classess.all');
     }
 
